@@ -8,6 +8,7 @@
 set -e
 
 # Parse parameters
+logfile=$4
 dataset=$1
 lang=$2
 trans_sys=$3
@@ -34,7 +35,7 @@ $FAST_ALIGN_BASE/build/fast_align -i $trans_fn -d -o -v > $align_fn
 # Evaluate
 mkdir -p ../data/human/$trans_sys/$lang/
 out_fn=../data/human/$trans_sys/$lang/${lang}.pred.csv
-python load_alignments.py --ds=$dataset  --bi=$trans_fn --align=$align_fn --lang=$lang --out=$out_fn
+python3 load_alignments.py --ds=$dataset  --bi=$trans_fn --align=$align_fn --lang=$lang --out=$out_fn --logfile=$logfile
 
 # Prepare files for human annots
 # human_fn=../data/human/$trans_sys/$lang/${lang}.in.csv

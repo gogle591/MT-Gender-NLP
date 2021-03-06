@@ -1,5 +1,5 @@
 """ Usage:
-    <file-name> --ds=DATASET_FILE --bi=IN_FILE --align=ALIGN_FILE --out=OUT_FILE --lang=LANG  [--debug]
+    <file-name> --ds=DATASET_FILE --bi=IN_FILE --align=ALIGN_FILE --out=OUT_FILE --lang=LANG --logfile=LOG [--debug]
 """
 # External imports
 import logging
@@ -12,6 +12,8 @@ from operator import itemgetter
 from tqdm import tqdm
 from typing import List
 import csv
+import json
+    
 
 # Local imports
 from languages.spacy_support import SpacyPredictor
@@ -147,6 +149,7 @@ if __name__ == "__main__":
     align_fn = args["--align"]
     out_fn = args["--out"]
     lang = args["--lang"]
+    log = args["--logfile"]
 
     debug = args["--debug"]
     if debug:
@@ -177,6 +180,9 @@ if __name__ == "__main__":
     output_predictions(target_sentences, gender_predictions, out_fn)
 
     d = evaluate_bias(ds, gender_predictions)
+    with open('{}'.format(log,lang), 'w') as file:
+        file.write(json.dumps(d)) # use `json.loads` to do the reverse
+    
 
 
     logging.info("DONE")
