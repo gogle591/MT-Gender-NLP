@@ -6,6 +6,7 @@ This repo contains code and data for reproducing the experiments in [Evaluating 
 
 ```
 @InProceedings{Stanovsky2019ACL,
+  modified by = {Houdaifa MELLAL, Souhila Dehni, Assad Oussama Zegina, Ahmed Saadi}
   author    = {Gabriel Stanovsky and Noah A. Smith and Luke Zettlemoyer},
   title     = {Evaluating Gender Bias in Machine Translation},
   booktitle = {ACL},
